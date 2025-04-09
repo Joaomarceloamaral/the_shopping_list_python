@@ -77,7 +77,24 @@ def get_unity_option(options, unitys_df) -> str:
             print(f"Opção {option_selected} não está na lista, tente novamente!")
 
 
-def execute_option(option: str, options, unitys_df) -> bool:
+def show_clas_by_id(products_list, id_number, unitys_df):
+
+    product = products_list[id_number]
+
+    # Verificando nas opções de unidades a abreviação correspondente a opção escolhida
+    option_abreviation = unitys_df.loc[
+        unitys_df["name"] == product.unity, "abreviation"
+    ].item()
+
+    print(f"------ Produto ID: {id_number} ------")
+    print(f"ID do Produto: {product.id}")
+    print(f"Nome do Produto: {product.name}")
+    print(f"Unidade: {product.unity}")
+    print(f"Quantidade: {product.quantity} {option_abreviation}")
+    print(f"Descrição: {product.description}")
+
+
+def execute_option(option: str, options, unitys_df, product, products_list):
     """
     Executa uma ação com base na opção selecionada pelo usuário.
 
@@ -88,6 +105,8 @@ def execute_option(option: str, options, unitys_df) -> bool:
 
     Retorna:
         bool: True após a execução da opção.
+        object: Classe com produto que foi adicionado
+
     """
 
     match option:
@@ -101,23 +120,93 @@ def execute_option(option: str, options, unitys_df) -> bool:
             # Verificando nas opções de unidades o nome correspondente a opção escolhida
             option_name = unitys_df.loc[unitys_df["option"] == unity, "name"].item()
 
-            print(
-                "\n\n---------------------- Produto Adicionado ----------------------"
-            )
-            print(f"Nome do Produto: {name}")
-            print(f"Unidade: {option_name}")
+            # Verificando nas opções de unidades a abreviação correspondente a opção escolhida
+            option_abreviation = unitys_df.loc[
+                unitys_df["option"] == unity, "abreviation"
+            ].item()
 
-            return True
+            if option_name == "unidade":
+                quantity = int(
+                    input(
+                        f"Informe a quantidade do produto em {option_abreviation}, numero inteiro: "
+                    )
+                )
+
+            else:
+                quantity = float(
+                    input(f"Informe a quantidade do produto em {option_abreviation}: ")
+                )
+
+            description = str(input("Dê uma breve descrição do produto: "))
+
+            produto = product(name, option_name, description, quantity)
+
+            return produto
 
         case "B":
-            print("Remover")
+            print("\n\n---------------------- Remover Produto ----------------------")
 
-            return True
+            id_validator = False
+            while id_validator is False:
+                try:
+                    id_number = int(input("Informe o ID do produto para remover: "))
+
+                    id_validator = True
+
+                except ValueError:
+
+                    print(
+                        "Valor que você inseriu não é válido, tente novamente com um numero inteiro!\n"
+                    )
+
+            try:
+
+                print("\n\nProduto Removido:")
+                show_clas_by_id(products_list, id_number, unitys_df)
+
+                products_list.pop(id_number)
+
+                return products_list
+
+            except IndexError:
+
+                print("\nNão existe produto com esse ID!")
+
+                return False
 
         case "C":
-            print("Pesquisar")
+            print("\n\n---------------------- Pesquisar Produto ----------------------")
 
-            return True
+            print("\n\n----------- Lista de Produtos -----------")
+            for i in range(len(products_list)):
+                print("\n")
+                show_clas_by_id(products_list, i, unitys_df)
+
+            id_validator = False
+            while id_validator is False:
+                try:
+                    id_number = int(input("\nInforme o ID do produto para pesquisar: "))
+
+                    id_validator = True
+
+                except ValueError:
+
+                    print(
+                        "Valor que você inseriu não é válido, tente novamente com um numero inteiro!\n"
+                    )
+
+            try:
+
+                print("\n")
+                show_clas_by_id(products_list, id_number, unitys_df)
+
+                return True
+
+            except IndexError:
+
+                print("\nNão existe produto com esse ID!")
+
+                return False
 
 
 def get_menu_option() -> str:
