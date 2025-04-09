@@ -105,6 +105,8 @@ def execute_option(option: str, options, unitys_df, product, products_list):
 
     Retorna:
         bool: True após a execução da opção.
+        object: Classe com produto que foi adicionado
+
     """
 
     match option:
