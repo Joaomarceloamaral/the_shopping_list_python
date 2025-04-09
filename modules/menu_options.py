@@ -77,7 +77,24 @@ def get_unity_option(options, unitys_df) -> str:
             print(f"Opção {option_selected} não está na lista, tente novamente!")
 
 
-def execute_option(option: str, options, unitys_df) -> bool:
+def show_clas_by_id(products_list, id_number, unitys_df):
+
+    product = products_list[id_number]
+
+    # Verificando nas opções de unidades a abreviação correspondente a opção escolhida
+    option_abreviation = unitys_df.loc[
+        unitys_df["name"] == product.unity, "abreviation"
+    ].item()
+
+    print(f"------ Produto ID: {id_number} ------")
+    print(f"ID do Produto: {product.id}")
+    print(f"Nome do Produto: {product.name}")
+    print(f"Unidade: {product.unity}")
+    print(f"Quantidade: {product.quantity} {option_abreviation}")
+    print(f"Descrição: {product.description}")
+
+
+def execute_option(option: str, options, unitys_df, product, products_list):
     """
     Executa uma ação com base na opção selecionada pelo usuário.
 
