@@ -12,7 +12,7 @@ class Product:
         quantity (int, opcional): A quantidade do produto (padrão é 0).
     """
 
-    def __init__(self, name: str, unity: str, description: str, quantity: int = 0):
+    def __init__(self, name: str, unity: str, description: str, quantity=0):
 
         self.name = name
         self.unity = unity
