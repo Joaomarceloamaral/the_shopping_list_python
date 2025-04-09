@@ -14,7 +14,11 @@ class Product:
 
     def __init__(self, name: str, unity: str, description: str, quantity=0):
 
+        self.id = 0
         self.name = name
         self.unity = unity
         self.description = description
         self.quantity = quantity
+
+    def add_class_id(self, id_number: int) -> int:
+        self.id = id_number
