@@ -20,5 +20,14 @@ class Product:
         self.description = description
         self.quantity = quantity
 
-    def add_class_id(self, id_number: int) -> int:
+    def add_class_id(self, id_number: int):
+        """
+        Define o ID da instância da classe.
+
+        Parâmetros:
+        - id_number (int): Número do ID a ser atribuído.
+
+        Retorno:
+        - Nenhum. Apenas define o atributo 'id' da instância.
+        """
         self.id = id_number

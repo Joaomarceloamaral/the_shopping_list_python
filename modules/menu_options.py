@@ -78,6 +78,17 @@ def get_unity_option(options, unitys_df) -> str:
 
 
 def show_clas_by_id(products_list, id_number, unitys_df):
+    """
+    Exibe informações sobre um produto específico com base no seu ID.
+
+    Parâmetros:
+    - products_list (list): Lista de produtos disponíveis.
+    - id_number (int): ID do produto desejado.
+    - unitys_df (DataFrame): DataFrame contendo abreviações das unidades.
+
+    Retorno:
+    - Nenhum. A função apenas imprime as informações do produto.
+    """
 
     product = products_list[id_number]
 
@@ -102,6 +113,8 @@ def execute_option(option: str, options, unitys_df, product, products_list):
         option (str): A opção escolhida pelo usuário.
         options (list): Lista de opções disponíveis.
         unitys_df (pd.DataFrame): DataFrame contendo as unidades de medida.
+        product (class): Classe Produto com atributos e metodos.
+        products_list (products_list): Lista com as instancias da classe Produtos.
 
     Retorna:
         bool: True após a execução da opção.
@@ -156,7 +169,7 @@ def execute_option(option: str, options, unitys_df, product, products_list):
                 except ValueError:
 
                     print(
-                        "Valor que você inseriu não é válido, tente novamente com um numero inteiro!\n"
+                        "Valor que você inseriu é inválido, tente com um numero inteiro!\n"
                     )
 
             try:
@@ -192,7 +205,7 @@ def execute_option(option: str, options, unitys_df, product, products_list):
                 except ValueError:
 
                     print(
-                        "Valor que você inseriu não é válido, tente novamente com um numero inteiro!\n"
+                        "Valor que você inseriu é inválido, tente com um numero inteiro!\n"
                     )
 
             try:
