@@ -30,7 +30,7 @@
 
 Run the script to start managing your shopping list:
 ```bash
-python shopping_list.py
+python main.py
 ```
 
 Follow the on-screen instructions to interact with the program.
@@ -41,4 +41,4 @@ Contributions are welcome! Feel free to fork the repository and submit a pull re
 
 ## Contact
 
-For any questions or feedback, please contact [marceloamaral201924@gmail.com]
+For any questions or feedback, please contact *marceloamaral201924@gmail.com*
